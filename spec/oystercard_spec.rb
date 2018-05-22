@@ -22,6 +22,7 @@ describe OysterCard do
     end
   end
 
+
   describe "#deduct" do
     it { is_expected.to respond_to(:deduct).with(1).argument }
 
@@ -29,6 +30,24 @@ describe OysterCard do
       card.top_up(20)
       fare = 10
       expect {card.deduct(fare)}.to change{card.balance}.by -fare
+    end
+  end
+
+
+  describe "#touch_in --> #in_journey --> #touch_out" do
+    it "checks in it's #in_journey" do
+      expect(card).not_to be_in_journey
+    end
+
+    it "#touch_in if it's not #in_journey" do
+      card.touch_in
+      expect(card).to be_in_journey
+    end
+
+    it "can #touch_out if it's not in journey" do
+      card.touch_in
+      card.touch_out
+      expect(card).not_to be_in_journey
     end
   end
 end
