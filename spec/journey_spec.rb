@@ -16,5 +16,21 @@ describe Journey do
     expect { journey.exit_station="Brixton" }.not_to raise_error
   end
 
+  it 'knows whether or not it is complete' do
+    journey = Journey.new
+    journey.finish
+    expect(journey).not_to be_complete
+  end
+
+  it 'the fare is the penalty fare if there is no entry station' do
+    journey = Journey.new
+    expect(journey.fare).to eq Journey::PENALTY_FARE
+  end
+
+  it 'the fare is the correct fare if there is an entry station and exit station' do
+    journey = Journey.new("Walthamstow")
+    journey.exit_station="Brixton"
+    expect(journey.fare).to eq Journey::CORRECT_FARE
+  end
 
 end
