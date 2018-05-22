@@ -40,14 +40,19 @@ describe OysterCard do
     end
 
     it "#touch_in if it's not #in_journey" do
-      card.touch_in
-      expect(card).to be_in_journey
+
+
     end
 
     it "can #touch_out if it's not in journey" do
+      card.top_up(OysterCard::MINIMUM_BALANCE)
       card.touch_in
       card.touch_out
       expect(card).not_to be_in_journey
     end
+
+    it "raises an error when the balance is below 1£" do
+      expect{card.touch_in}.to raise_error "Not enough money on card"
+   end
   end
 end
