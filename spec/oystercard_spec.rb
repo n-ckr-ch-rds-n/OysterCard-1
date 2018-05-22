@@ -7,6 +7,7 @@ describe OysterCard do
     expect(card.balance).to eq (0)
   end
 
+
   describe "#top_up" do
     it { is_expected.to respond_to(:top_up).with(1).argument }
 
@@ -18,6 +19,16 @@ describe OysterCard do
       maximum_balance = OysterCard::MAXIMUM_BALANCE
       card.top_up(maximum_balance)
       expect { card.top_up(1)}.to raise_error "Maximum balance exceeded!"
+    end
+  end
+
+  describe "#deduct" do
+    it { is_expected.to respond_to(:deduct).with(1).argument }
+
+    it "it deducts the fare from the balace" do
+      card.top_up(20)
+      fare = 10
+      expect {card.deduct(fare)}.to change{card.balance}.by -fare
     end
   end
 end
