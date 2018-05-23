@@ -19,7 +19,7 @@ describe Journey do
   it 'knows whether or not it is complete' do
     journey = Journey.new
     journey.finish
-    expect(journey).not_to be_complete
+    expect(journey).to be_complete
   end
 
   it 'the fare is the penalty fare if there is no entry station' do

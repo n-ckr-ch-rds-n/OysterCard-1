@@ -23,7 +23,7 @@ class Journey
   end
 
   def complete?
-    @in_journey
+    !@in_journey
   end
 
 end
