@@ -17,7 +17,8 @@ class Journey
   end
 
   def fare
-    return PENALTY_FARE if @entry_station == nil || @exit_station == nil
+    return PENALTY_FARE if @entry_station == nil
+    return PENALTY_FARE if @exit_station == nil
     return CORRECT_FARE
   end
 

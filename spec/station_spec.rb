@@ -8,7 +8,7 @@ describe Station do
     expect(subject.name).to eq "Old Street"
   end
 
-  it "initializes with a name" do
+  it "initializes with a zone" do
     expect(subject.zone).to eq (1)
   end
 end
